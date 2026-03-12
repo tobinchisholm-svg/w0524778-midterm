@@ -1,0 +1,46 @@
+%%{init: {"layout": {"hierarchy": true, "algorithm": "elk"}} }%%
+classDiagram
+
+    class GameController {
+        +initializeGame()
+        +spawnSnake()
+        +spawnFood()
+        +startLoop()
+    }
+
+    class Snake {
+        +headPosition
+        +direction
+        +move()
+        +grow()
+    }
+
+    class Tail {
+        +segments : List<Position>
+        +length() int
+        +append(segment: Position)
+        +popLast() Position
+    }
+
+    class Food {
+        +position : Position
+        +respawn()
+    }
+
+    class Board {
+        +width : int
+        +height : int
+        +isInsideBounds(pos: Position) bool
+        +randomEmptyCell() Position
+    }
+
+    %% Relationships
+    GameController --> Snake : creates
+    GameController --> Food : creates
+    GameController --> Board : creates
+
+    %% Snake owns its Tail (composition)
+    Snake *-- Tail : has
+
+    Snake --> Board : uses for movement bounds
+    Food --> Board : uses for valid spawn location
