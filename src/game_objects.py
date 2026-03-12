@@ -92,3 +92,40 @@ class Board:
     def randomEmptyCell(self) -> Position:
         """Return a random empty cell (no implementation)."""
         pass
+
+
+# demo_verify_instantiation_and_calls.py
+# Assumes your class stubs are defined above or imported.
+
+def main():
+    # Instantiate objects (proves objects can be created)
+    game = GameController()
+    snake = Snake()
+    tail = Tail()
+    food = Food()
+    board = Board()
+    pos = Position(3, 4)
+
+    # Method calls (proves methods execute)
+    game.initializeGame()
+    game.spawnSnake()
+    game.spawnFood()
+    game.startLoop()
+
+    snake.move()
+    snake.grow()
+
+    # Tail method calls
+    _ = tail.length()
+    tail.append(pos)
+    _ = tail.popLast()
+
+    # Food + Board method calls
+    food.respawn()
+    _ = board.isInsideBounds()
+    _ = board.randomEmptyCell()
+
+    print("✅ Classes exist, objects can be instantiated, and methods execute (no game logic).")
+
+if __name__ == "__main__":
+    main()
