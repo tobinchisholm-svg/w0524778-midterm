@@ -1,0 +1,106 @@
+sequenceDiagram
+  participant main as main()
+  participant gc as GameController
+  participant snake as Snake
+  participant tail as Tail
+  participant food as Food
+  participant board as Board
+  participant pos as Position
+
+  main->>pos: Position(3, 4)
+  activate pos
+  pos-->>main: pos instance
+  deactivate pos
+
+  main->>gc: GameController()
+  activate gc
+  gc-->>main: game instance
+  deactivate gc
+
+  main->>snake: Snake()
+  activate snake
+  snake-->>main: snake instance
+  deactivate snake
+
+  main->>tail: Tail()
+  activate tail
+  tail-->>main: tail instance
+  deactivate tail
+
+  main->>food: Food()
+  activate food
+  food-->>main: food instance
+  deactivate food
+
+  main->>board: Board()
+  activate board
+  board-->>main: board instance
+  deactivate board
+
+  Note over main,gc: Initialization phase
+
+  main->>gc: initializeGame()
+  activate gc
+  gc-->>main: None
+  deactivate gc
+
+  main->>gc: spawnSnake()
+  activate gc
+  gc-->>main: None
+  deactivate gc
+
+  main->>gc: spawnFood()
+  activate gc
+  gc-->>main: None
+  deactivate gc
+
+  main->>gc: startLoop()
+  activate gc
+  gc-->>main: None
+  deactivate gc
+
+  Note over main,snake: Snake actions
+
+  main->>snake: move()
+  activate snake
+  snake-->>main: None
+  deactivate snake
+
+  main->>snake: grow()
+  activate snake
+  snake-->>main: None
+  deactivate snake
+
+  Note over main,tail: Tail operations
+
+  main->>tail: length()
+  activate tail
+  tail-->>main: int
+  deactivate tail
+
+  main->>tail: append(pos)
+  activate tail
+  tail-->>main: None
+  deactivate tail
+
+  main->>tail: popLast()
+  activate tail
+  tail-->>main: Position | None
+  deactivate tail
+
+  Note over main,board: Food & Board calls
+
+  main->>food: respawn()
+  activate food
+  food-->>main: None
+  deactivate food
+
+  main->>board: isInsideBounds()
+  activate board
+  board-->>main: bool
+  deactivate board
+
+  main->>board: randomEmptyCell()
+  activate board
+  board-->>main: Position
+  deactivate board
